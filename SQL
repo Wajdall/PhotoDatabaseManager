@@ -1,0 +1,300 @@
+#Table creation
+create table `client` (
+num_cli int auto_increment,
+name_cli varchar(128),
+adr_cli  varchar(128),
+email_cli varchar(128),
+CONSTRAINT client_pk PRIMARY KEY(num_cli)
+);
+
+create table `order` (
+num_ord int auto_increment,
+date_ord date ,
+CONSTRAINT order_pk PRIMARY KEY(num_ord)
+);
+
+create table photo (
+num_pho int auto_increment,
+file_pho tinytext ,
+dow_dat_pho date ,
+met_d_pho varchar(128),
+CONSTRAINT photo_pk PRIMARY KEY(num_pho)
+);
+
+create table print (
+num_cli int ,
+num_ord int ,
+num_pho int ,
+N_Exemp int ,
+CONSTRAINT print_pk PRIMARY KEY(num_cli , num_ord , num_pho),
+CONSTRAINT client_fk FOREIGN KEY(num_cli) REFERENCES `client`(num_cli),
+CONSTRAINT order_fk FOREIGN KEY(num_ord) REFERENCES `order`(num_ord),
+CONSTRAINT photo_fk FOREIGN KEY(num_pho) REFERENCES photo(num_pho)
+);
+
+#Values insertions
+INSERT INTO client (name_cli, adr_cli, email_cli) VALUES #15 rows
+('Ahmed Al-dosari', 'Al Ain, UAE', 'ahmed.mansoori@example.com'),
+('Fatima Al-Hassan', 'Doha, Qatar', 'fatima.hassan@example.com'),
+('Hamad Al-Khalifa', 'Manama, Bahrain', 'hamad.khalifa@example.com'),
+('Mariam Al-Sabah', 'Kuwait City, Kuwait', 'mariam.sabah@example.com'),
+('Jassim Al-Jassim', 'Riyadh, Saudi Arabia', 'jassim.jassim@example.com'),
+('Laila Al-Farsi', 'Muscat, Oman', 'laila.farsi@example.com'),
+('Mohammed Al-Sharif', 'Dubai, UAE', 'mohammed.sharif@example.com'),
+('Aisha Al-Mutairi', 'Jeddah, Saudi Arabia', 'aisha.mutairi@example.com'),
+('Omar Al-Rashid', 'Abu Dhabi, UAE', 'omar.rashid@example.com'),
+('Noor Al-Najjar', 'Doha, Qatar', 'noor.najjar@example.com'),
+('Khalid Al-Mujahid', 'Bahrain, Bahrain', 'khalid.mujahid@example.com'),
+('Hana Al-Khalid', 'Kuwait City, Kuwait', 'hana.khalid@example.com'),
+('Rashid Al-Saleh', 'Muscat, Oman', 'rashid.saleh@example.com'),
+('Juwairiah Al-Ali', 'Riyadh, Saudi Arabia', 'juwairiah.ali@example.com'),
+('Salim Al-Hamdi', 'Dubai, UAE', 'salim.hamdi@example.com');
+
+INSERT INTO photo (file_pho, dow_dat_pho, met_d_pho) VALUES #27 rows
+('beach_sunset.jpg', '2018-01-15', 'JPEG'),
+('desert_dunes.png', '2018-05-22', 'PNG'),
+('cityscape.jpg', '2018-08-19', 'JPEG'),
+('traditional_dress.png', '2018-12-10', 'PNG'),
+('food_dish.jpg', '2019-03-11', 'JPEG'),
+('historical_building.png', '2019-06-20', 'PNG'),
+('mountain_view.jpg', '2019-09-25', 'JPEG'),
+('night_sky.png', '2019-11-30', 'PNG'),
+('marketplace.jpg', '2020-02-05', 'JPEG'),
+('family_portrait.png', '2020-04-18', 'PNG'),
+('architecture.jpg', '2020-07-12', 'JPEG'),
+('cultural_festival.png', '2020-10-23', 'PNG'),
+('wildlife.jpg', '2021-01-08', 'JPEG'),
+('heritage_site.png', '2021-04-14', 'PNG'),
+('landscape.jpg', '2021-07-19', 'JPEG'),
+('art_gallery.jpg', '2021-11-02', 'JPEG'),
+('summer_festival.png', '2022-01-25', 'PNG'),
+('night_lights.jpg', '2022-05-06', 'JPEG'),
+('desert_oasis.png', '2022-08-17', 'PNG'),
+('city_night.jpg', '2022-12-12', 'JPEG'),
+('river_rafting.jpg', '2023-02-20', 'PNG'),
+('snow_mountain.jpg', '2023-04-15', 'JPEG'),
+('autumn_foliage.png', '2023-08-10', 'PNG'),
+('beach_party.jpg', '2023-11-23', 'JPEG'),
+('winter_festival.png', '2024-01-05', 'PNG'),
+('spring_blossoms.jpg', '2024-04-10', 'JPEG'),
+('summer_vacation.png', '2024-07-15', 'PNG'),
+('fall_scape.jpg', '2024-10-30', 'JPEG');
+
+INSERT INTO `order` (date_ord) VALUES #34 rows
+('2018-01-01'),
+('2018-03-15'),
+('2018-06-10'),
+('2018-09-25'),
+('2018-12-30'),
+('2019-02-05'),
+('2019-04-18'),
+('2019-07-10'),
+('2019-10-15'),
+('2019-12-20'),
+('2020-01-10'),
+('2020-03-11'),
+('2020-06-30'),
+('2020-08-25'),
+('2020-11-15'),
+('2021-01-20'),
+('2021-03-30'),
+('2021-06-05'),
+('2021-08-25'),
+('2021-11-15'),
+('2022-01-15'),
+('2022-04-10'),
+('2022-07-20'),
+('2022-10-05'),
+('2022-12-25'),
+('2023-02-01'),
+('2023-05-15'),
+('2023-08-10'),
+('2023-10-20'),
+('2023-12-30'),
+('2024-01-20'),
+('2024-03-15'),
+('2024-06-10'),
+('2024-09-25'),
+('2024-12-15');
+
+INSERT INTO print (num_cli, num_ord, num_pho, N_EXEMP) VALUES #22 rows
+(1, 1, 1, 5),
+(1, 1, 9, 3),
+(1, 2, 3, 4),
+(2, 2, 4, 2),
+(2, 3, 5, 7),
+(3, 4, 6, 6),
+(3, 5, 7, 8),
+(4, 6, 8, 4),
+(4, 6, 9, 3),
+(5, 7, 10, 5),
+(5, 8, 11, 6),
+(6, 9, 12, 7),
+(6, 10, 13, 8),
+(7, 11, 14, 4),
+(7, 12, 15, 3),
+(8, 13, 16, 6),
+(8, 14, 1, 5),
+(9, 15, 18, 7),
+(9, 15, 19, 8),
+(10, 16, 22, 2),
+(10, 17, 21, 5),
+(11, 18, 22, 3),
+(11, 19, 23, 4);
+
+
+#Queries 5.1 - 5.13
+#5.1. List the emails of all clients.
+SELECT email_cli AS 'Email'
+FROM `client`;
+
+#5.2. List of all the orders placed on 03-11-2020
+SELECT*
+FROM `order`
+WHERE date_ord = '2020-03-11';
+
+#5.3. List of all files of the photos ordered on 03-11-2020
+SELECT p.num_pho AS 'Photo ID' , p.file_pho AS 'File name'  
+FROM photo p
+JOIN print pr ON p.num_pho = pr.num_pho
+JOIN `order` o ON o.num_ord = pr.num_ord
+WHERE date_ord = '2020-03-11';
+
+#5.4 List of all files of the photos ordered on 03-11-2020 as well as the name of their respective client
+SELECT p.num_pho AS 'Photo ID' ,p.file_pho AS 'File name' , c.name_cli AS 'Client name'
+FROM photo p
+JOIN print pr ON p.num_pho = pr.num_pho
+JOIN `order` o ON o.num_ord = pr.num_ord
+JOIN `client` c ON c.num_cli = pr.num_cli
+WHERE date_ord = '2020-03-11';
+
+#5.5. Find the list of photos that have not been printed.
+SELECT p.num_pho AS 'Photo ID' ,p.file_pho AS 'File name' 
+FROM photo p
+WHERE p.num_pho NOT IN (
+SELECT num_pho
+FROM print
+);
+
+#5.6 Give the number of photos (NUM_PHO) that are printed or that are downloaded before 01-01-2020. (use the union operator)
+SELECT count(*)
+FROM (
+SELECT num_pho 
+FROM photo
+WHERE dow_dat_pho < '2020-01-01'
+UNION
+SELECT DISTINCT num_pho
+FROM print p
+) AS delivered_table;
+
+#5.7 Give the number of photos (NUM_PHO) that are printed with exemplary number more than 5 and that are downloaded before 13-05-2020. (use the intersect operator) 
+select count(*)
+FROM (
+SELECT num_pho
+FROM print
+WHERE print.N_Exemp > 5
+INTERSECT
+SELECT num_pho
+FROM photo
+WHERE dow_dat_pho < '2020-05-13'
+) AS delivered_table;
+
+#5.8. Find all photos in “jpeg” type. 
+SELECT*
+FROM photo
+WHERE met_d_pho LIKE 'JPEG';
+
+#5.9. For each client, give the total of the exemplary printed
+SELECT c.name_cli AS 'Client' , p.num_cli AS 'Client ID' , SUM(N_Exemp) AS 'Total exemplary'
+FROM print p
+JOIN `client` c ON c.num_cli = p.num_cli
+GROUP BY p.num_cli;
+
+#5.10. For each client give the number of orders during the year 2020: the result must be given in ascending order of client number
+SELECT c.name_cli AS 'Client' , p.num_cli AS 'Client ID' ,
+SUM(CASE
+ WHEN YEAR(o.date_ord) = 2020 THEN 1
+ ELSE 0 
+ END) AS '2020 Total Orders'
+FROM print p
+JOIN `client` c ON c.num_cli = p.num_cli
+JOIN `order` o ON o.num_ord = p.num_ord
+GROUP BY p.num_cli
+ORDER BY p.num_cli ;
+
+#5.11. Give the biggest exemplary number.
+SELECT MAX(N_Exemp) AS 'Highest exmplary'
+FROM print;
+
+#5.12. Give the average of exemplary number for the year 2020. 
+SELECT AVG(N_Exemp) AS '2020 Average'
+FROM print p
+JOIN `order` o ON o.num_ord = p.num_ord
+WHERE YEAR(o.date_ord) = '2020';
+
+#5.13. For each photo, give the number of times it was printed in total.
+SELECT num_pho AS 'Photo ID',SUM(N_Exemp)
+FROM print 
+group by (num_pho);
+
+#Queries using DML 6.1 - 6.10
+#Insertion ( 4 ) to each table
+
+INSERT INTO photo (file_pho, dow_dat_pho, met_d_pho) VALUES #1
+('       night_sky_full_moon.png', '2024-03-01', 'PNG'),
+('', '2024-02-10', ''),
+('','2020-01-01',''),
+('desert_footprints.jpg', '2022-12-15', 'JPENG'),
+('water_cup.png', '2002-12-15', 'PNG'),
+('grass_youch.jpn' , '2023-08-07','PNG');
+
+select* from photo;
+INSERT INTO client (name_cli, adr_cli, email_cli) VALUES #2
+('Ziyad malik', 'Riyadh, Saudi Arabia.', 'zmk@example.com'),
+('Fouz ahhmed', 'Doha, Qatar.', 'fahe@example.com'),
+('lana al-zayed', 'Manama, Bahrain', 'lana_aed@example.com');
+
+INSERT INTO `order` (date_ord) VALUES #3
+('2000-01-01'),
+('2001-02-15'),
+('2004-12-31');
+
+#Updates
+UPDATE `client` #4
+SET email_cli = 'mohaAS@gmail.com'
+WHERE num_cli = 7;
+
+UPDATE `photo` #5
+SET met_d_pho = 'PNG' ,
+file_pho = CONCAT(Substring_index(file_pho,'.',1),'.png')
+WHERE num_pho = 21;
+select * from `client`;
+
+UPDATE `client` #6
+SET adr_cli = TRIM(TRAILING '.' FROM adr_cli)
+WHERE adr_cli like '%.';
+
+select TRIM(file_pho )from photo ; #7
+UPDATE photo 
+SET file_pho = TRIM(file_pho);
+
+UPDATE photo #8
+SET met_d_pho = 'JPEG'
+WHERE met_d_pho like 'JPENG';
+
+
+SELECT file_pho AS 'File Name' , met_d_pho AS 'File type' #9
+FROM photo;
+UPDATE photo
+SET met_d_pho = CASE
+WHEN file_pho LIKE '%.png' THEN 'PNG'
+WHEN file_pho LIKE '%.jpg' THEN 'JPEG'
+ELSE met_d_pho
+END;
+
+#DELETE
+DELETE FROM `ORDER` #10
+WHERE date_ord <= '2004-12-31';
+
+DELETE FROM photo #11
+WHERE file_pho like '' AND met_d_pho like '';
